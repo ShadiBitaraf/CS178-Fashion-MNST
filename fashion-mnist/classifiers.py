@@ -20,18 +20,19 @@ train_images = train_images.reshape(-1, 28 * 28)
 test_images = test_images.reshape(-1, 28 * 28)
 
 # Create a kNN classifier
-k = 2
-knn = KNeighborsClassifier(n_neighbors=k, n_jobs=-1) 
+k_values = [3, 5, 7, 9, 11]
+for k in k_values:
+    knn = KNeighborsClassifier(n_neighbors=k, n_jobs=-1) 
 
-# Fit the classifier to the training data
-knn.fit(train_images, train_labels)
+    # Fit the classifier to the training data
+    knn.fit(train_images, train_labels)
 
-# Make predictions on the test data
-test_predictions = knn.predict(test_images)
+    # Make predictions on the test data
+    test_predictions = knn.predict(test_images)
 
-# Calculate accuracy on the test data
-test_accuracy = accuracy_score(test_labels, test_predictions)
-print("kNN Classifier test Accuracy:", test_accuracy)
+    # Calculate accuracy on the test data
+    test_accuracy = accuracy_score(test_labels, test_predictions)
+    print(f"kNN Classifier test Accuracy for k={k}: {test_accuracy}")
 
 
 #Random Forest Classifier:
